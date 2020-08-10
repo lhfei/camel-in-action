@@ -230,7 +230,13 @@
 				<groupId>org.apache.camel</groupId>
 				<artifactId>camel-timer</artifactId>
 				<version>${camel.version}</version>
-			</dependency>				
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.camel</groupId>
+				<artifactId>camel-componentdsl</artifactId>
+				<version>${camel.version}</version>
+			</dependency>			
 
 			<!-- ActiveMQ -->
 			<dependency>
@@ -326,5 +332,6 @@
 		<module>basic</module>
 		<module>spring</module>
 		<module>dataformat</module>
+		<module>kafka</module>
 	</modules>
 </project>
