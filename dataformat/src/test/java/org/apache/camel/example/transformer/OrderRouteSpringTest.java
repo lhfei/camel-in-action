@@ -23,8 +23,6 @@ import org.apache.camel.Processor;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.example.transformer.demo.Order;
-import org.apache.camel.example.transformer.demo.OrderResponse;
 import org.apache.camel.spi.DataType;
 import org.apache.camel.spi.DataTypeAware;
 import org.apache.camel.test.spring.CamelSpringRunner;
@@ -35,6 +33,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import cn.lhfei.camel.dataformat.model.Order;
+import cn.lhfei.camel.dataformat.model.OrderResponse;
 
 @RunWith(CamelSpringRunner.class)
 @ContextConfiguration(value = "/META-INF/spring/camel-context.xml")
@@ -71,10 +71,11 @@ public class OrderRouteSpringTest {
         });
         mockCsv.setExpectedMessageCount(1);
 
-        Order order = new Order()
-            .setOrderId("Order-Java-0001")
-            .setItemId("MILK")
-            .setQuantity(3);
+        Order order = new Order();
+        order.setOrderId("Order-Java-0001");
+        order.setItemId("MILK");
+        order.setQuantity(3);
+        
         Object answer = javaProducer.requestBody(order);
         assertEquals(OrderResponse.class, answer.getClass());
         OrderResponse or = (OrderResponse)answer;
@@ -123,16 +124,17 @@ public class OrderRouteSpringTest {
         mockCsv.setExpectedMessageCount(1);
 
         String order = "{\"orderId\":\"Order-JSON-0001\", \"itemId\":\"MIZUYO-KAN\", \"quantity\":\"16350\"}";
-        OrderResponse expected = new OrderResponse()
-            .setAccepted(true)
-            .setOrderId("Order-JSON-0001")
-            .setDescription("Order accepted:[item='MIZUYO-KAN' quantity='16350']");
+        OrderResponse expected = new OrderResponse();
+        expected.setAccepted(true);
+        expected.setOrderId("Order-JSON-0001");
+        expected.setDescription("Order accepted:[item='MIZUYO-KAN' quantity='16350']");
+        
         ObjectMapper jsonMapper = new ObjectMapper();
         String expectedJson = jsonMapper.writeValueAsString(expected);
         Exchange answer = jsonProducer.send("direct:json", ex -> {
             ((DataTypeAware)ex.getIn()).setBody(order, new DataType("json"));
         });
-        assertEquals(expectedJson, answer.getOut().getBody(String.class));
+        assertEquals(expectedJson, answer.getMessage().getBody(String.class));
         mockCsv.assertIsSatisfied();
     }
 }
