@@ -10,7 +10,7 @@
 	</parent>
 
 
-  <name>camel-basic</name>
+  <name>basic</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
