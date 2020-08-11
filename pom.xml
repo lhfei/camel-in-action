@@ -236,7 +236,13 @@
 				<groupId>org.apache.camel</groupId>
 				<artifactId>camel-componentdsl</artifactId>
 				<version>${camel.version}</version>
-			</dependency>			
+			</dependency>
+			
+			<dependency>
+	            <groupId>org.apache.camel</groupId>
+	            <artifactId>camel-jdbc</artifactId>
+	            <version>${camel.version}</version>
+	        </dependency>		
 
 			<!-- ActiveMQ -->
 			<dependency>
@@ -266,6 +272,11 @@
 				<artifactId>spring-context-support</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			<dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-jdbc</artifactId>
+	            <version>${spring.version}</version>
+	        </dependency>
 			
 			<!-- XMLUnit -->
 			<dependency>
@@ -324,6 +335,13 @@
 					<artifactId>maven-project-info-reports-plugin</artifactId>
 					<version>3.0.0</version>
 				</plugin>
+				
+				 <!-- Allows the routes to be run via 'mvn camel:run' -->
+	            <plugin>
+	                <groupId>org.apache.camel</groupId>
+	                <artifactId>camel-maven-plugin</artifactId>
+	                <version>${camel.version}</version>
+	            </plugin>
 			</plugins>
 		</pluginManagement>
 	</build>

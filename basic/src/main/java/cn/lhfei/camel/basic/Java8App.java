@@ -16,6 +16,7 @@ package cn.lhfei.camel.basic;
 
 import java.util.Objects;
 import java.util.Random;
+import org.apache.camel.CamelContext;
 import org.apache.camel.Exchange;
 import org.apache.camel.Message;
 import org.apache.camel.builder.RouteBuilder;
@@ -31,7 +32,7 @@ import org.slf4j.LoggerFactory;
  * @created Jul 31, 2020
  */
 public final class Java8App {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Java8App.class);
+  private static final Logger LOG = LoggerFactory.getLogger(Java8App.class);
 
   private Java8App() {
   }
@@ -67,13 +68,16 @@ public final class Java8App {
               .body(Integer.class, b -> (b & 1) != 0)
               .log("Received odd number")
       .endChoice();
+      
+      CamelContext camelContext = this.getContext();
+      LOG.info("XML{}", camelContext.toString());
     }
 
     private Long getRandom(Exchange e) {
       Random random = new Random();
       int factor = random.nextInt(10) * 100 + 3;
       Long num = Long.parseLong("" + factor);
-      LOGGER.info("Random number: [{}], [{}]", factor, num);
+      LOG.info("Random number: [{}], [{}]", factor, num);
       return num;
     }
 
@@ -84,11 +88,11 @@ public final class Java8App {
 //    }
 
     private void log(Object b) {
-      LOGGER.info("body is: {}", b);
+      LOG.info("body is: {}", b);
     }
 
     private void log(Message m) {
-      LOGGER.info("message is: {}", m);
+      LOG.info("message is: {}", m);
     }
   }
 }
