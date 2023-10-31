@@ -1,0 +1,28 @@
+camel:
+  springboot:
+    name: CamelSpringBootDynamicRouterExample
+    jmx-enabled: false
+    shutdown-timeout: 30
+  spring-boot:
+    dynamic-router-eip:
+      routing-channel: numbers
+      subscribe-uri: dynamic-router:control
+      receiver-scheme: direct
+      start-uri: direct:start
+      recipient-mode: firstMatch
+      send-message-count: 1000000
+      expected-first-match-message-count: 1000000
+      expected-all-match-message-count: 2507465
+  component:
+    dynamic-router:
+      lazy-start-producer: true
+      autowiredEnabled: true
+  cloud:
+    enabled: false
+logging:
+  level:
+    '[cn.lhfei.camel]': debug
+    '[org.springframework]': info
+spring:
+  profiles:
+    active: default
