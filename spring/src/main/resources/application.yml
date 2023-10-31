@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active:
+      - dev
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    encoding: UTF-8
+    suffix: .html
+    mode: HTML
+  mvc:
+    static-path-pattern: /static/**
+server:
+  port: 7000
+  servlet:
+    context-path: /api/v1
+
+

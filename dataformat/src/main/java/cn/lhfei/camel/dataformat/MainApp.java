@@ -55,7 +55,7 @@ public class MainApp {
     // START SNIPPET: e1
     LOG.info("---> Starting 'order' camel route...");
     try (ClassPathXmlApplicationContext context =
-        new ClassPathXmlApplicationContext("META-INF/spring/camel-context.xml")) {
+        new ClassPathXmlApplicationContext("classpath:META-INF/spring/camel-context.xml")) {
       context.start();
       CamelContext camelContext = context.getBean("order", CamelContext.class);
       ProducerTemplate producer = camelContext.createProducerTemplate();

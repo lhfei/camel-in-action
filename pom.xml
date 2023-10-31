@@ -14,16 +14,18 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 
 		<logback.version>1.2.3</logback.version>
 		<slf4j.version>1.7.30</slf4j.version>
 
-		<camel.version>3.4.2</camel.version>
+		<camel.version>4.0.0</camel.version>
+		<camel-test.version>3.21.0</camel-test.version>
+		<apache-camel.version>4.0.0</apache-camel.version>
 
 		<active.mq.version>5.16.0</active.mq.version>
-		<spring.version>5.2.7.RELEASE</spring.version>
+		<spring.version>6.0.11</spring.version>
 		<xmlunit.version>1.6</xmlunit.version>
 	</properties>
 
@@ -206,13 +208,13 @@
 			<dependency>
 			    <groupId>org.apache.camel</groupId>
 			    <artifactId>camel-test</artifactId>
-			    <version>${camel.version}</version>
+			    <version>${camel-test.version}</version>
 			    <scope>test</scope>
 			</dependency>
 			<dependency>
 			    <groupId>org.apache.camel</groupId>
 			    <artifactId>camel-test-spring</artifactId>
-			    <version>${camel.version}</version>
+			    <version>${camel-test.version}</version>
 			    <scope>test</scope>
 			</dependency>
 			<dependency>
